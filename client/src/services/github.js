@@ -22,7 +22,7 @@ query($userName:String!) {
 }
 `;
 
-export default async function retrieveContributionData(userName) {
+export async function retrieveContributionData(userName) {
   const variables = `
   {
     "userName": "${userName}"
@@ -58,4 +58,21 @@ export default async function retrieveContributionData(userName) {
   }).catch(err => console.log(err));
 
   return result;
+}
+
+export async function calculateStreak(arrayOfContributions) {
+  let last_contribution_day = undefined;
+  let has_already_commited = false;
+  /*
+    contribution : {
+      contributionCount,
+      date,
+    }
+  */
+  for(const contribution in arrayOfContributions){
+    const date = contribution.date;
+    const count = contribution.contributionCount;
+    
+  }
+
 }
