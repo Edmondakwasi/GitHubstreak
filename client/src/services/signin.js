@@ -13,5 +13,8 @@ export async function signInWithGithub() {
 }
 
 export async function signOut() {
-    const { error } = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut();
+    if(error) {
+        console.log(error);
+    }
 }

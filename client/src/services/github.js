@@ -7,7 +7,6 @@ const now = new Date();
 const today = now.toISOString().split('T')[0];
 const tomorrowDate = new Date(today);
 tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-const tomorrow = now.toISOString().split('T')[0];
 
 
 const query = `
@@ -55,6 +54,7 @@ export default async function retrieveContributionData(userName) {
     
     contributionDays = contributionDays.filter((c) => {
       if(c.date <= today) return true;
+      return false;
     });
     return contributionDays;
   }).catch(err => console.log(err));
@@ -122,4 +122,12 @@ export async function calculateStreak(arrayOfContributions) {
   }
 
   return streak;
+}
+
+export async function checkUser(userName) {
+  const response = await (await fetch(`https://api.github.com/users/${userName}`)).json();
+  if(response.message && response.message === "Not Found"){
+    return false;
+  }
+  return true;
 }

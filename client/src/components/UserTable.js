@@ -3,7 +3,7 @@ import {useEffect,useState} from 'react'
 import supabase from '../supabase/supabaseClient';
 import retrieveContributionData, { calculateStreak } from "../services/github"
 
-export default function UserTable() {
+export default function UserTable({userCount}) {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
    async function fetchData(){
@@ -32,7 +32,7 @@ export default function UserTable() {
    
    fetchData();
 
-  },[]);
+  },[userCount]);
   return (
     <table id="leaderboard">
         <tbody>

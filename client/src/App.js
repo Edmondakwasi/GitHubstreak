@@ -1,17 +1,16 @@
 import React from 'react'
-import {useState,useEffect } from 'react'
-import supabase from './supabase/supabaseClient'
-import userTable from './components/UserTable';
+import {useState} from 'react'
 import UserTable from './components/UserTable';
 import Header from './components/Header';
 import Signup from './components/Signup';
 
 export default function App() {
+  const [userCount , setUserCount] = useState(0);
   return (
     <main>
     <Header/>
-    <Signup />
-    <UserTable/>
+    <Signup userCount={[userCount,setUserCount]}/>
+    <UserTable userCount={userCount}/>
     </main>
   )
 }
